@@ -1,0 +1,27 @@
+{
+  "name": "puzzling",
+  "version": "1.0.0",
+  "description": "Things to think about",
+  "main": "index.js",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-fs": "^2.0.0",
+    "chai-subset": "^1.6.0",
+    "mocha": "^9.1.3",
+    "typescript": "^4.5.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grandclosing/Puzzling.git"
+  },
+  "author": "Vuk Petrovic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Grandclosing/Puzzling/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/Grandclosing/Puzzling#readme"
+}
