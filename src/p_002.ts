@@ -27,8 +27,10 @@ const is_permutation_quick = (input : string, toCheck : string) : boolean => {
 
     for(let i = 0; i < toCheck.length; ++i) {
         const cCode : number = toCheck.charCodeAt(i);
-
-        if(--charCounts[cCode] < 0)
+        
+        // first check determines if the character exists in toCheck but not in input
+        // second check determines if the given character shows up more often in toCheck than in input 
+        if(!charCounts[cCode] || --charCounts[cCode] < 0)
             return false;
     }
 
