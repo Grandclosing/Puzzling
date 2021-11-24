@@ -28,9 +28,9 @@
 
    */
 
-export const is_permuation_of_palindrome = (input : string, 
-                                            include_spaces : boolean = false,
-                                            case_sensitive : boolean = false) : boolean => {
+export const isPermutationOfPalindrome = (input : string, 
+                                          include_spaces : boolean = false,
+                                          case_sensitive : boolean = false) : boolean => {
     if(!input) throw new Error('Expecting valid, non-empty string input');
 
     /* single-character words are always palindromes; and two-character words can only be palindromes if both are the same character */
