@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { isAtMostOneEditAway } from '../dist/p_005.js';
 
-describe('Puzzle 4', () => {
+describe('Puzzle 5', () => {
     describe('#isAtMostOneEditAway()', () => {
         it('Should throw an exception when an empty, null, or undefined string is passed in for either of the arguments', () => {
             expect(() => {
