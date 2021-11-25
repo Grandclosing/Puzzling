@@ -23,5 +23,8 @@
     "url": "https://github.com/Grandclosing/Puzzling/issues"
   },
   "type": "module",
-  "homepage": "https://github.com/Grandclosing/Puzzling#readme"
+  "homepage": "https://github.com/Grandclosing/Puzzling#readme",
+  "dependencies": {
+    "@types/node": "^16.11.10"
+  }
 }
