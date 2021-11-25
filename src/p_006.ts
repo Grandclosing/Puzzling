@@ -49,3 +49,51 @@ export const compress = (input : string, preserve : boolean = false) : string =>
 
     return compressed.length < input.length ? compressed : input;
 }
+
+/* Note about further optimization: 
+
+   The above algorithm's runtime is O(n + m^2). 
+
+   n comes from the fact that we are looping through the original input once. 
+   m is the number of individual character sequences in the compressed string (e.g. aabbbcbb has 4 character sequences)
+
+   It's m^2 because most concatenation algorithms do a find for end-of-string under the hood, prior to appending the 
+   new character sequence. So every append is doing an additional loop through the compressed string. 
+
+   In fact, in JavaScript this is even slower since each append is also implicitly allocating a brand new string 
+   buffer, copying everything from the original compressed string over, and appending the new sequence in. (Wooo immutability..!)
+
+   Things you could do to mitigate this: 
+
+   1. Loop through the entire input first, and determine the length of the compressed output; if it's not shorter than the input,
+      just return the original input and don't bother generating the compressed string at all. This will clock in at around O(2n)
+
+   2. Don't use immutable data structures, build your compressed string in a data structure that can be modified in place 
+
+   3. Write / use a smarter append function; for instance, in C, you could write a function that appends characters 
+      to the end of a string, then returns a pointer to the next write position. For example: 
+
+      char *smart_concat(char *target, char *to_append) {
+          char *ptr = target;
+          int count_appended = 0;
+
+          while(*ptr != NULL) // just in case 
+              ptr++;
+          
+          count_appended = sprintf(ptr, "%s", to_append);
+          
+          return ptr + count_appended;
+      }
+
+      Then to use it, it would work like: 
+
+      char buffer[32] = {0};
+      char *ptr = buffer;
+
+      ptr = smart_concat(ptr, "Hello,");
+
+      // no iterating through the full string necessary, it'll just plop the new string right on the end
+      ptr = smart_concat(ptr, " world!");
+
+      printf("%s\n", buffer);
+*/
