@@ -47,11 +47,9 @@ describe('Puzzle 8', () => {
 
         it('Should properly zero out the rows and columns of a matrix with nodes containing zero', () => {
             myMatrix[0][1] = 0;
-
             expect(matricesAreIdentical(myMatrix, [[1, 0, 3], [4, 5, 6], [7, 8, 9]])).to.be.true;
 
             zeroMatrix(myMatrix);
-
             expect(matricesAreIdentical(myMatrix, [[0, 0, 0], [4, 0, 6], [7, 0, 9]])).to.be.true;
         });
     });

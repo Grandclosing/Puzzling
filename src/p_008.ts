@@ -7,20 +7,23 @@
 export const zeroMatrix = (matrix : number[][]) : void => {
     if(!matrix || !matrix.length) throw new Error("Expecting valid matrix");
 
+    let rows : boolean[] = [];
+    let columns : boolean[] = [];
+
     for(let i = 0; i < matrix.length; ++i) {
-        for(let j = 0; j < matrix.length; ++j) {
+        for(let j = 0; j < matrix[i].length; ++j) {
             if(matrix[i][j] === 0) {
-               matrix[0][j] = 0;
-               matrix[i][0] = 0;
-            }
+                rows[i] = true;
+                columns[j] = true;
+            } 
         }
     }
 
     for(let i = 0; i < matrix.length; ++i) {
-        for(let j = 0; j < matrix.length; ++j) {
-            if(matrix[0][j] === 0 || matrix[i][0] === 0) {
-               matrix[i][j] = 0;
-            }
+        for(let j = 0; j < matrix[i].length; ++j) {
+            if(rows[i] || columns[j]) {
+                matrix[i][j] = 0;
+            } 
         }
     }
 
