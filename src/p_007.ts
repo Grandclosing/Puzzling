@@ -44,7 +44,7 @@ export const printMatrix = (matrix : number[][]) : void => {
 }
 
 export const rotateMatrix = (matrix : number[][], length : number, direction : Direction) : void => {
-    if(!matrix) throw new Error("Expecting valid matrix");
+    if(!matrix || !matrix.length) throw new Error("Expecting valid matrix");
     if(length < 2) throw new Error('Invalid length specified for matrix, must be >= 2');
 
     if(direction != Direction.CLOCKWISE && 
