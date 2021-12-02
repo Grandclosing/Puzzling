@@ -62,9 +62,23 @@ export class LinkedList {
       newNode.next = this.head;
       this.head = newNode;
 
-      this.head.next!.prev = this.head;
+      if(this.doublyLinked)
+         this.head.next!.prev = this.head;
 
       this.length++;
+   }
+
+   at(index : number) : LLNode | null {
+      if(index < 0) throw new Error("Index must be positive integer");
+      if(index > this.length || this.length === 0) return null;
+
+      let current = this.head;
+      for(let i = 0; i < index; ++i) {
+         // assuming this.length is correct 
+         current = current!.next;
+      }
+
+      return current;
    }
 
    removeByIndex(index : number) {
@@ -138,6 +152,36 @@ export class LinkedList {
       }  
 
       return ret;
+   }
+
+   static copy(inList : LinkedList) : LinkedList {
+      let outList : LinkedList = new LinkedList();
+
+      let current = inList.raw;
+      while(current != null) {
+         outList.append(current.value);
+
+         current = current.next;
+      }
+
+      return outList;
+   }
+
+   static areIdentical(listA : LinkedList, listB : LinkedList) : boolean {
+      if(!listA || !listB) throw new Error("Expecting valid linked list inputs");
+      if(listA.length != listB.length) return false;
+
+      let currentA = listA.raw;
+      let currentB = listB.raw;
+
+      while(currentA != null && currentB != null) {
+         if(currentA.value !== currentB.value) return false;
+
+         currentA = currentA.next;
+         currentB = currentB.next;
+      }
+
+      return true;
    }
 }
 
