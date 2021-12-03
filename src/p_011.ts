@@ -63,6 +63,8 @@ export const getKthFromLastWithTwoIterators = (head : LLNode | null, k : number)
 
 let countFromBack = 0;
 export const getKthFromLastWithRecursion = (head : LLNode | null, k : number) : LLNode | null => {
+    if(k < 0) throw new Error("Expecting k >= 0");
+
     if(!head) {
         countFromBack = 0;
         return head;
